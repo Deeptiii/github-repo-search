@@ -11,13 +11,15 @@
 body {
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
         "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
+        "Helvetica Neue", sans-serif; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: var(--main-bg);
     color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+        sans-serif, Apple Color Emoji, Segoe UI Emoji;
 }
 
 code {
@@ -31,9 +33,11 @@ code {
     border-radius: 6px;
     padding: 5px 16px;
     color: var(--text-color);
+    white-space: nowrap;
 }
 
-.btn:hover {
+.btn:hover,
+select:hover {
     background-color: var(--btn-hover-bg);
     border-color: var(--btn-hover-border);
     transition-duration: 0.1s;
@@ -56,4 +60,15 @@ code {
     border-color: #388bfd;
     box-shadow: 0 0 0 3px #0c2d6b;
     outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
 }

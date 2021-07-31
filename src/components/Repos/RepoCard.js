@@ -15,10 +15,13 @@ const RepoCard = ({ repo }) => {
     return (
         <Wrapper>
             <div>
-                <h3 className='card-header'>{name}</h3>
-                <div className='card-desc'>
-                    <p>{desc}</p>
+                <div>
+                    <h3 className='card-header'>{name}</h3>
+                    <div className='card-desc'>
+                        <p className='card-desc-details'>{desc}</p>
+                    </div>
                 </div>
+
                 <div className='card-info flex_align_center'>
                     <button className='btn card-info-btn flex_align_center'>
                         <span className='card-info-btn-left flex_align_center'>
@@ -61,13 +64,22 @@ const Wrapper = styled.div`
 
     .card-desc {
         font-size: 14px;
+
+        .card-desc-details {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            text-overflow: ellipsis;
+        }
     }
 
     .card-info {
         font-size: 1rem;
+        flex-wrap: wrap;
 
         .card-info-btn {
-            margin-right: 10px;
+            margin: 5px 20px 5px 0px;
             padding: 5px 10px;
 
             .MuiSvgIcon-root {
@@ -77,6 +89,7 @@ const Wrapper = styled.div`
 
             .card-info-btn-left {
                 padding-right: 10px;
+                white-space: nowrap;
             }
             .count {
                 padding: 5px 7px;

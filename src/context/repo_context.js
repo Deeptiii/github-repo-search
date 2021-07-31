@@ -1,13 +1,19 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import axios from "axios";
 import reducer from "../reducers/repo_reducer";
-import { SET_SEARCH, SET_REPOS, SET_REPOS_ERROR } from "../actions";
+import {
+    SET_SEARCH,
+    SET_REPOS,
+    SET_REPOS_ERROR,
+    SET_REPOS_LOADING
+} from "../actions";
 
 const initialState = {
     repoList: [],
     owner: "",
     error: false,
-    searchTerm: ""
+    searchTerm: "",
+    isLoading: false
 };
 
 const RepoContext = React.createContext();
@@ -16,6 +22,7 @@ export const RepoProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const getRepos = async () => {
+        dispatch({ type: SET_REPOS_LOADING });
         try {
             const resp = await axios.get(
                 `https://api.github.com/users/${state.searchTerm}/repos?per_page=100`
@@ -25,7 +32,6 @@ export const RepoProvider = ({ children }) => {
                 payload: resp.data
             });
         } catch (err) {
-            console.error(err);
             dispatch({
                 type: SET_REPOS_ERROR
             });

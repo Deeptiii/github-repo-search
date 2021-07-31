@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import RepoList from "./Repos/RepoList";
 import { useRepoContext } from "../context/repo_context";
+import Loader from "./Repos/Loader";
 
 const Home = () => {
-    // const [user, setUser] = useState("");
-    // const [repos, setRepos] = useState([]);
-    const { searchTerm, setSearch, getRepos } = useRepoContext();
+    const { searchTerm, setSearch, getRepos, isLoading, error } =
+        useRepoContext();
+    const [showLoader, setShowLoader] = useState(false);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -15,6 +16,13 @@ const Home = () => {
         }
     };
 
+    useEffect(() => {
+        console.log("test i home, is loading", isLoading);
+        setShowLoader(isLoading);
+    }, [isLoading]);
+
+    console.log("facing error", error);
+
     return (
         <Wrapper>
             <div className='form-container'>
@@ -22,7 +30,7 @@ const Home = () => {
                     <input
                         className='input form-input'
                         type='text'
-                        placeholder='Search user repo'
+                        placeholder='Search user repository...'
                         value={searchTerm}
                         onChange={(e) => setSearch(e.target.value)}
                         spellCheck='false'
@@ -36,7 +44,7 @@ const Home = () => {
                 </form>
             </div>
             <div className='repo-container'>
-                <RepoList />
+                {showLoader ? <Loader /> : <RepoList />}
             </div>
         </Wrapper>
     );
@@ -47,6 +55,8 @@ const Wrapper = styled.main`
         display: flex;
         padding: 10px;
         align-items: center;
+        max-width: 1170px;
+        margin: auto;
 
         form {
             display: flex;
