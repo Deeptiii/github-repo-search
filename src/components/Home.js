@@ -17,11 +17,8 @@ const Home = () => {
     };
 
     useEffect(() => {
-        console.log("test i home, is loading", isLoading);
         setShowLoader(isLoading);
     }, [isLoading]);
-
-    console.log("facing error", error);
 
     return (
         <Wrapper>
