@@ -1,6 +1,12 @@
 :root {
     --main-bg: #0d1117;
     --text-color: #c9d1d9;
+    --text-color-blue: #58a6ff;
+    --border-color: #21262d;
+    --btn-bg: #21262d;
+    --btn-boder-color: #30363d;
+    --btn-hover-bg: #30363d;
+    --btn-hover-border: #8b949e;
 }
 body {
     padding: 0;
@@ -17,4 +23,37 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
+}
+
+.btn {
+    background: var(--btn-bg);
+    border: 1px solid var(--btn-boder-color);
+    border-radius: 6px;
+    padding: 5px 16px;
+    color: var(--text-color);
+}
+
+.btn:hover {
+    background-color: var(--btn-hover-bg);
+    border-color: var(--btn-hover-border);
+    transition-duration: 0.1s;
+}
+
+.flex_align_center {
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    background: var(--main-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 10px;
+    color: white;
+}
+
+.input:focus-visible {
+    border-color: #388bfd;
+    box-shadow: 0 0 0 3px #0c2d6b;
+    outline: none;
 }
