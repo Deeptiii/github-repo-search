@@ -6,8 +6,7 @@ import Loader from "./Repos/Loader";
 import Form from "./Form";
 
 const Home = () => {
-    const { searchTerm, setSearch, getRepos, isLoading, error } =
-        useRepoContext();
+    const { searchTerm, setSearch, getRepos, isLoading } = useRepoContext();
     const [showLoader, setShowLoader] = useState(false);
 
     const onSubmit = (e) => {

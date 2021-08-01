@@ -6,8 +6,7 @@ import {
     FILTER_REPO,
     UPDATE_SORT,
     SORT_REPO,
-    CLEAR_FILTERS,
-    SET_REPOS_LOADING
+    CLEAR_FILTERS
 } from "../actions";
 import filterReducer from "../reducers/filter_reducer";
 
