@@ -3,6 +3,7 @@ export const SET_SEARCH = "SET_SEARCH";
 export const SET_REPOS_ERROR = "SET_REPOS_ERROR";
 export const SET_REPOS_LOADING = "SET_REPOS_LOADING";
 export const SET_TYPE = "SET_TYPE";
+export const RESET_SEARCH = "RESET_SEARCH";
 
 export const LOAD_REPOS = "LOAD_REPOS";
 export const UPDATE_FILTERS = "UPDATE_FILTERS";

@@ -18,7 +18,7 @@ it("renders correctly", () => {
         </RepoContext.Provider>
     );
     expect(queryByTestId("search-form-input")).toBeTruthy();
-    expect(queryByPlaceholderText("Search user repository...")).toBeTruthy();
+    expect(queryByPlaceholderText("Search user...")).toBeTruthy();
 });
 
 describe("Input value", () => {
@@ -29,7 +29,7 @@ describe("Input value", () => {
             </RepoProvider>
         );
 
-        const searchInput = queryByPlaceholderText("Search user repository...");
+        const searchInput = queryByPlaceholderText("Search user...");
         fireEvent.change(searchInput, { target: { value: "test" } });
         expect(searchInput.value).toBe("test");
     });

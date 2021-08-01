@@ -3,8 +3,10 @@ import {
     SET_REPOS,
     SET_TYPE,
     SET_REPOS_ERROR,
-    SET_REPOS_LOADING
+    SET_REPOS_LOADING,
+    RESET_SEARCH
 } from "../actions";
+import { initialState } from "../context/repo_context";
 
 const repo_reducer = (state, action) => {
     switch (action.type) {
@@ -37,6 +39,10 @@ const repo_reducer = (state, action) => {
                 error: true,
                 errorMessage: msg,
                 isLoading: false
+            };
+        case RESET_SEARCH:
+            return {
+                ...initialState
             };
         default:
             return state;

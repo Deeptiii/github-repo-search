@@ -6,7 +6,8 @@ import {
     SET_REPOS,
     SET_TYPE,
     SET_REPOS_ERROR,
-    SET_REPOS_LOADING
+    SET_REPOS_LOADING,
+    RESET_SEARCH
 } from "../actions";
 
 export const initialState = {
@@ -56,6 +57,9 @@ export const RepoProvider = ({ children }) => {
     const updateType = (value) => {
         dispatch({ type: SET_TYPE, payload: value });
     };
+    const clearSearch = () => {
+        dispatch({ type: RESET_SEARCH });
+    };
 
     return (
         <RepoContext.Provider
@@ -63,7 +67,8 @@ export const RepoProvider = ({ children }) => {
                 ...state,
                 getRepos,
                 setSearch,
-                updateType
+                updateType,
+                clearSearch
             }}>
             {children}
         </RepoContext.Provider>
