@@ -19,12 +19,14 @@ const filterRepo = (state) => {
     let temp_repos = [...all_repos];
     if (nam) {
         temp_repos = temp_repos.filter(
-            (repo) => repo.name.toLowerCase().indexOf(nam) !== -1
+            (repo) => repo.name.toLowerCase().indexOf(nam.toLowerCase()) !== -1
         );
     }
     if (owner) {
         temp_repos = temp_repos.filter(
-            (repo) => repo.owner.login.toLowerCase().indexOf(owner) !== -1
+            (repo) =>
+                repo.owner.login.toLowerCase().indexOf(owner.toLowerCase()) !==
+                -1
         );
     }
 
