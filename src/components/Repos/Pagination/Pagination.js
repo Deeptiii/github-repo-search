@@ -2,14 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Pagination = ({ totalPages, paginate, currentPage }) => {
-    const pageNumbers = [];
-
     if (totalPages === 1) {
         return null;
-    }
-
-    for (let i = currentPage; i <= Math.min(currentPage, totalPages); i++) {
-        pageNumbers.push(i);
     }
 
     return (
@@ -17,34 +11,35 @@ const Pagination = ({ totalPages, paginate, currentPage }) => {
             <ul className='pagination flex_align_center'>
                 <li>
                     <button
+                        data-testid='first'
                         className={`btn ${currentPage === 1 ? "disabled" : ""}`}
                         onClick={() => paginate(1)}
                         disabled={currentPage === 1}>
-                        First Page
+                        {"<<"}
                     </button>
                 </li>
                 <li>
                     <button
+                        data-testid='prev'
                         className={`btn ${currentPage === 1 ? "disabled" : ""}`}
                         onClick={() => paginate(currentPage - 1)}
                         disabled={currentPage === 1}>
                         Prev
                     </button>
                 </li>
-                {pageNumbers.map((number) => (
-                    <li key={number}>
-                        <button
-                            className={`btn ${
-                                currentPage === number ? "active" : ""
-                            }`}
-                            disabled={currentPage === number}
-                            onClick={() => paginate(number)}>
-                            {number}
-                        </button>
-                    </li>
-                ))}
+
                 <li>
                     <button
+                        data-testid='active'
+                        className='btn active'
+                        onClick={() => paginate(currentPage)}>
+                        {currentPage}
+                    </button>
+                </li>
+
+                <li>
+                    <button
+                        data-testid='next'
                         className={`btn ${
                             currentPage === totalPages ? "disabled" : ""
                         }`}
@@ -55,12 +50,13 @@ const Pagination = ({ totalPages, paginate, currentPage }) => {
                 </li>
                 <li>
                     <button
+                        data-testid='last'
                         className={`btn ${
                             currentPage === totalPages ? "disabled" : ""
                         }`}
                         onClick={() => paginate(totalPages)}
                         disabled={currentPage === totalPages}>
-                        Last Page
+                        {">>"}
                     </button>
                 </li>
             </ul>

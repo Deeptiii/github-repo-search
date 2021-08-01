@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Loader = () => {
     return (
-        <Wrapper>
+        <Wrapper data-testid='loader'>
             <img className='loader' src={loader} alt='' />
         </Wrapper>
     );

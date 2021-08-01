@@ -39,6 +39,10 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     width: auto;
+    background: var(--main-bg);
+    position: sticky;
+    top: 0;
+    z-index: 2;
     .sort {
         background: var(--btn-bg);
         color: var(--text-color);

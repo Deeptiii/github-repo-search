@@ -37,6 +37,7 @@ code {
 }
 
 .btn:hover,
+.filter-span:hover,
 select:hover {
     background-color: var(--btn-hover-bg);
     border-color: var(--btn-hover-border);

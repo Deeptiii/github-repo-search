@@ -10,7 +10,7 @@ import {
 } from "../actions";
 import filterReducer from "../reducers/filter_reducer";
 
-const initialState = {
+export const initialFilterState = {
     all_repos: [],
     filtered_repos: [],
     sort: "name-a",
@@ -23,12 +23,12 @@ const initialState = {
     }
 };
 
-const FilterContext = createContext();
+export const FilterContext = createContext();
 
 export const FilterProvider = ({ children }) => {
     const { repoList } = useRepoContext();
 
-    const [state, dispatch] = useReducer(filterReducer, initialState);
+    const [state, dispatch] = useReducer(filterReducer, initialFilterState);
 
     useEffect(() => {
         dispatch({ type: LOAD_REPOS, payload: repoList });

@@ -9,7 +9,7 @@ import {
     SET_REPOS_LOADING
 } from "../actions";
 
-const initialState = {
+export const initialState = {
     repoList: [],
     owner: "",
     type: "owner",
@@ -19,7 +19,7 @@ const initialState = {
     isLoading: false
 };
 
-const RepoContext = React.createContext();
+export const RepoContext = React.createContext();
 
 export const RepoProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);

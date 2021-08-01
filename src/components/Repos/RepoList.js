@@ -5,7 +5,7 @@ import RepoCard from "./RepoCard";
 import { useFilterContext } from "../../context/filter_context";
 import Filter from "./Filter";
 import Sort from "./Sort";
-import Pagination from "./Pagination";
+import Pagination from "./Pagination/Pagination";
 import { useRepoContext } from "../../context/repo_context";
 import Message from "../Message";
 
@@ -17,7 +17,7 @@ const RepoList = () => {
 
     const [repos, setRepos] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [repoPerPage] = useState(5);
+    const [repoPerPage] = useState(10);
 
     useEffect(() => {
         if (!repoList || !repoList.length) {
@@ -70,7 +70,6 @@ const RepoList = () => {
                                 <span className='user-name'>{owner.name}</span>
                             </div>
                         </div>
-                        <Filter showOwner={showOwner} />
                     </div>
                 )}
                 <div className='right_section'>
@@ -80,8 +79,8 @@ const RepoList = () => {
                         indexOfFirstRepo={indexOfFirstRepo}
                         totalRepos={repos.length}
                     />
-                    {!showOwner && <Filter showOwner={showOwner} />}
-                    {repoList.length ? (
+                    <Filter showOwner={showOwner} />
+                    {repoList?.length ? (
                         <>
                             {currentRepos.map((repo) => (
                                 <RepoCard
@@ -118,18 +117,22 @@ const Wrapper = styled.section`
             .user-info {
                 display: flex;
                 align-items: flex-start;
+                position: sticky;
+                top: 2rem;
                 .avatar {
                     width: 30%;
                     height: fit-content;
                 }
 
                 .user-info-container {
-                    margin: 16px 0;
+                    margin: 16px 20px;
                     .user-name {
-                        font-size: 30px;
+                        font-size: 25px;
                         font-style: normal;
-                        font-weight: 600;
-                        line-height: 24px;
+                        font-weight: 300;
+                        line-height: 30px;
+                        display: inline-block;
+                        word-break: break-word;
                     }
                 }
             }

@@ -1,9 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { useRepoContext } from "../context/repo_context";
+import { useRepoContext } from "../../context/repo_context";
 
-const Form = ({ onSubmit, searchTerm, setSearch }) => {
-    const { type, updateType } = useRepoContext();
+const Form = () => {
+    const { type, updateType, setSearch, searchTerm, getRepos } =
+        useRepoContext();
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (searchTerm.length) {
+            getRepos();
+        }
+    };
+
     return (
         <Wrapper onSubmit={onSubmit}>
             <input
@@ -13,6 +22,7 @@ const Form = ({ onSubmit, searchTerm, setSearch }) => {
                 value={searchTerm}
                 onChange={(e) => setSearch(e.target.value)}
                 spellCheck='false'
+                data-testid='search-form-input'
             />
 
             <select
@@ -29,7 +39,11 @@ const Form = ({ onSubmit, searchTerm, setSearch }) => {
                 <option value='all'>All</option>
             </select>
 
-            <button className='btn form-btn' type='submit' onSubmit={onSubmit}>
+            <button
+                className='btn form-btn'
+                type='submit'
+                data-testid='form-submit-btn'
+                onSubmit={onSubmit}>
                 Search
             </button>
         </Wrapper>
