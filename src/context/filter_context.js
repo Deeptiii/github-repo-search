@@ -14,7 +14,7 @@ import filterReducer from "../reducers/filter_reducer";
 const initialState = {
     all_repos: [],
     filtered_repos: [],
-    sort: "createdAt",
+    sort: "name-a",
     filters: {
         name: "",
         owner: "",

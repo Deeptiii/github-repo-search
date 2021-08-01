@@ -2,7 +2,7 @@ import React from "react";
 import { useFilterContext } from "../../context/filter_context";
 import styled from "styled-components";
 
-const Filter = () => {
+const Filter = ({ showOwner }) => {
     const {
         filters: { name, owner, star_gazers, watchers, openIssue },
         updateFilters,
@@ -12,20 +12,19 @@ const Filter = () => {
     const handlePreventScroll = (e) => {
         e.currentTarget.blur();
     };
-
     return (
-        <Wrapper>
+        <Wrapper showOwner={showOwner}>
             <div className='content'>
+                <div className='content-header'>
+                    <span>Filters</span>
+                    <button
+                        className='btn filter-btn-top'
+                        type='button'
+                        onClick={clearFilters}>
+                        Clear Filters
+                    </button>
+                </div>
                 <form onSubmit={(e) => e.preventDefault()}>
-                    <div className='content-header'>
-                        <span>Filters</span>
-                        <button
-                            className='btn filter-btn-top'
-                            type='button'
-                            onClick={clearFilters}>
-                            Clear Filters
-                        </button>
-                    </div>
                     <div className='form-control'>
                         <input
                             type='text'
@@ -38,8 +37,17 @@ const Filter = () => {
                     </div>
                     <div className='form-control'>
                         <input
+                            type='text'
+                            name='owner'
+                            className='input filter-input'
+                            value={owner}
+                            placeholder='Find by owner...'
+                            onChange={updateFilters}
+                        />
+                    </div>
+                    <div className='form-control'>
+                        <input
                             type='number'
-                            min='0'
                             name='star_gazers'
                             className='input filter-input'
                             value={star_gazers}
@@ -52,7 +60,6 @@ const Filter = () => {
                         <input
                             type='number'
                             name='watchers'
-                            min='0'
                             className='input filter-input'
                             value={watchers}
                             placeholder='Filter by watchers...'
@@ -64,7 +71,6 @@ const Filter = () => {
                         <input
                             type='number'
                             name='openIssue'
-                            min='0'
                             className='input filter-input'
                             value={openIssue}
                             placeholder='Filter by open issues...'
@@ -72,13 +78,14 @@ const Filter = () => {
                             onWheel={handlePreventScroll}
                         />
                     </div>
-
-                    <button
-                        className='btn filter-btn'
-                        type='button'
-                        onClick={clearFilters}>
-                        Clear Filters
-                    </button>
+                    <div className='form-control'>
+                        <button
+                            className='btn filter-btn'
+                            type='button'
+                            onClick={clearFilters}>
+                            Clear Filters
+                        </button>
+                    </div>
                 </form>
             </div>
         </Wrapper>
@@ -87,6 +94,7 @@ const Filter = () => {
 
 const Wrapper = styled.div`
     display: flex;
+    border-top: 1px solid var(--btn-boder-color);
 
     .content {
         width: 100%;
@@ -103,19 +111,26 @@ const Wrapper = styled.div`
             }
         }
 
-        .form-control {
-            margin-bottom: 1.25rem;
-            width: 100%;
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
 
-            .filter-input {
-                width: 90%;
-                margin-top: 5px;
+            .form-control {
+                margin-bottom: 1.25rem;
+                min-width: 185px;
+                padding-right: 20px;
+                .filter-input {
+                    width: 90%;
+                    margin-top: 5px;
+                }
+
+                .filter-btn {
+                    display: none;
+                    width: ${(props) => (props.showOwner ? "100%" : "unset")};
+                    height: 34px;
+                }
             }
-        }
-        .filter-btn {
-            display: none;
-            width: 100%;
-            height: 34px;
         }
     }
 
@@ -129,8 +144,15 @@ const Wrapper = styled.div`
                 display: none;
             }
 
-            .filter-btn {
-                display: block;
+            form {
+                .form-control {
+                    margin-bottom: 1.25rem;
+                    width: ${(props) => (props.showOwner ? "100%" : "unset")};
+
+                    .filter-btn {
+                        display: block;
+                    }
+                }
             }
         }
     }

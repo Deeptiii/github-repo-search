@@ -3,6 +3,7 @@ import styled from "styled-components";
 import RepoList from "./Repos/RepoList";
 import { useRepoContext } from "../context/repo_context";
 import Loader from "./Repos/Loader";
+import Form from "./Form";
 
 const Home = () => {
     const { searchTerm, setSearch, getRepos, isLoading, error } =
@@ -23,22 +24,11 @@ const Home = () => {
     return (
         <Wrapper>
             <div className='form-container'>
-                <form onSubmit={onSubmit}>
-                    <input
-                        className='input form-input'
-                        type='text'
-                        placeholder='Search user repository...'
-                        value={searchTerm}
-                        onChange={(e) => setSearch(e.target.value)}
-                        spellCheck='false'
-                    />
-                    <button
-                        className='btn form-btn'
-                        type='submit'
-                        onSubmit={onSubmit}>
-                        Search
-                    </button>
-                </form>
+                <Form
+                    onSubmit={onSubmit}
+                    searchTerm={searchTerm}
+                    setSearch={setSearch}
+                />
             </div>
             <div className='repo-container'>
                 {showLoader ? <Loader /> : <RepoList />}
@@ -54,20 +44,6 @@ const Wrapper = styled.main`
         align-items: center;
         max-width: 1170px;
         margin: auto;
-
-        form {
-            display: flex;
-            width: 100%;
-            height: 30px;
-
-            .form-input {
-                width: 91%;
-            }
-
-            .form-btn {
-                margin-left: 10px;
-            }
-        }
     }
 
     .repo-container {

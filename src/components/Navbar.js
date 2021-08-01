@@ -21,6 +21,8 @@ const Wrapper = styled.nav`
     .logo {
         height: 70%;
     }
+    @media (min-width: 768px) {
+    }
 `;
 
 export default Navbar;

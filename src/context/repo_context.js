@@ -1,9 +1,10 @@
-import React, { useContext, useReducer, useEffect } from "react";
+import React, { useContext, useReducer } from "react";
 import axios from "axios";
 import reducer from "../reducers/repo_reducer";
 import {
     SET_SEARCH,
     SET_REPOS,
+    SET_TYPE,
     SET_REPOS_ERROR,
     SET_REPOS_LOADING
 } from "../actions";
@@ -11,7 +12,9 @@ import {
 const initialState = {
     repoList: [],
     owner: "",
+    type: "owner",
     error: false,
+    errorMessage: "",
     searchTerm: "",
     isLoading: false
 };
@@ -25,15 +28,23 @@ export const RepoProvider = ({ children }) => {
         dispatch({ type: SET_REPOS_LOADING });
         try {
             const resp = await axios.get(
-                `https://api.github.com/users/${state.searchTerm}/repos?per_page=100`
+                `https://api.github.com/users/${state.searchTerm}/repos`,
+                {
+                    params: {
+                        per_page: 100,
+                        type: state.type
+                    }
+                }
             );
             dispatch({
                 type: SET_REPOS,
                 payload: resp.data
             });
         } catch (err) {
+            console.log(err);
             dispatch({
-                type: SET_REPOS_ERROR
+                type: SET_REPOS_ERROR,
+                payload: err.response
             });
         }
     };
@@ -42,12 +53,17 @@ export const RepoProvider = ({ children }) => {
         dispatch({ type: SET_SEARCH, payload: term });
     };
 
+    const updateType = (value) => {
+        dispatch({ type: SET_TYPE, payload: value });
+    };
+
     return (
         <RepoContext.Provider
             value={{
                 ...state,
                 getRepos,
-                setSearch
+                setSearch,
+                updateType
             }}>
             {children}
         </RepoContext.Provider>

@@ -1,6 +1,7 @@
 import {
     SET_SEARCH,
     SET_REPOS,
+    SET_TYPE,
     SET_REPOS_ERROR,
     SET_REPOS_LOADING
 } from "../actions";
@@ -9,6 +10,8 @@ const repo_reducer = (state, action) => {
     switch (action.type) {
         case SET_SEARCH:
             return { ...state, searchTerm: action.payload };
+        case SET_TYPE:
+            return { ...state, type: action.payload };
         case SET_REPOS:
             return {
                 ...state,
@@ -20,12 +23,19 @@ const repo_reducer = (state, action) => {
             return {
                 ...state,
                 error: false,
-                isLoading: true
+                isLoading: true,
+                repoList: []
             };
         case SET_REPOS_ERROR:
+            let msg = "";
+            if (action.payload?.data?.message) {
+                msg = action.payload.data.message.split("(")[0];
+                msg += "Please try after an hour";
+            }
             return {
                 ...state,
                 error: true,
+                errorMessage: msg,
                 isLoading: false
             };
         default:

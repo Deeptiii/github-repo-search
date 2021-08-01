@@ -5,33 +5,64 @@ import RepoCard from "./RepoCard";
 import { useFilterContext } from "../../context/filter_context";
 import Filter from "./Filter";
 import Sort from "./Sort";
+import Pagination from "./Pagination";
 import { useRepoContext } from "../../context/repo_context";
-import Loader from "./Loader";
+import Message from "../Message";
 
 const RepoList = () => {
     const [owner, setOwner] = useState({ name: "", avatar_url: "" });
+    const [showOwner, setShowOwner] = useState(false);
     const { filtered_repos: repoList } = useFilterContext();
-    const { isLoading, repoList: allRepo } = useRepoContext();
+    const { repoList: allRepo, type, error, errorMessage } = useRepoContext();
+
+    const [repos, setRepos] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [repoPerPage] = useState(5);
 
     useEffect(() => {
         if (!repoList || !repoList.length) {
             return;
         }
-        const { login, avatar_url } = repoList[0].owner;
-        setOwner({
-            name: login,
-            avatar_url
-        });
+        setRepos(repoList);
+        if (type === "owner") {
+            const { login, avatar_url } = repoList[0].owner;
+            setOwner({
+                name: login,
+                avatar_url
+            });
+            setShowOwner(true);
+        } else {
+            setShowOwner(false);
+        }
+        setCurrentPage(1);
     }, [repoList]);
 
     if (allRepo && !allRepo.length) {
-        return <div>Search for a Valid user to get repository list</div>;
+        let msg = "Search for a Valid user to get repository list";
+        if (error) {
+            if (errorMessage) {
+                msg = errorMessage;
+            } else
+                msg =
+                    "We are facing error to fetch data for this user, please try later";
+        }
+        return <Message msg={msg} />;
     }
 
+    //Get current Repos
+    const indexOfLastRepo = currentPage * repoPerPage;
+    const indexOfFirstRepo = indexOfLastRepo - repoPerPage;
+    const currentRepos = repos.slice(indexOfFirstRepo, indexOfLastRepo);
+    const totalPages = Math.ceil(repos.length / repoPerPage);
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
     return (
-        <Wrapper>
-            {repoList.length && (
-                <div className='container'>
+        <Wrapper showOwner={showOwner}>
+            <div className='container'>
+                {showOwner && (
                     <div className='left_section'>
                         <div className='user-info'>
                             <Avatar className='avatar' src={owner.avatar_url} />
@@ -39,22 +70,39 @@ const RepoList = () => {
                                 <span className='user-name'>{owner.name}</span>
                             </div>
                         </div>
-                        <Filter />
+                        <Filter showOwner={showOwner} />
                     </div>
-                    <div className='right_section'>
-                        {repoList.length ? (
-                            <>
-                                <Sort className='sort-container' />
-                                {repoList.map((repo) => (
-                                    <RepoCard key={repo.id} repo={repo} />
-                                ))}
-                            </>
-                        ) : (
-                            <div>Please search for repos</div>
-                        )}
-                    </div>
+                )}
+                <div className='right_section'>
+                    <Sort
+                        className='sort-container'
+                        indexOfLastRepo={indexOfLastRepo}
+                        indexOfFirstRepo={indexOfFirstRepo}
+                        totalRepos={repos.length}
+                    />
+                    {!showOwner && <Filter showOwner={showOwner} />}
+                    {repoList.length ? (
+                        <>
+                            {currentRepos.map((repo) => (
+                                <RepoCard
+                                    showImage={!showOwner}
+                                    key={repo.id}
+                                    repo={repo}
+                                />
+                            ))}
+                            <Pagination
+                                repoPerPage={repoPerPage}
+                                totalPages={totalPages}
+                                paginate={paginate}
+                                currentPage={currentPage}
+                                showOwner={showOwner}
+                            />
+                        </>
+                    ) : (
+                        <Message msg='No repository found for the given filter' />
+                    )}
                 </div>
-            )}
+            </div>
         </Wrapper>
     );
 };
@@ -63,7 +111,7 @@ const Wrapper = styled.section`
     .container {
         display: grid;
         gap: 0rem 1.5rem;
-        margin: 2rem auto;
+        margin: 1rem auto;
         max-width: 1170px;
 
         .left_section {
@@ -93,6 +141,7 @@ const Wrapper = styled.section`
                 flex-direction: column;
                 align-items: flex-start;
                 padding-bottom: 10px;
+                white-space: nowrap;
             }
         }
     }
@@ -117,8 +166,8 @@ const Wrapper = styled.section`
             }
 
             .right_section {
-                max-width: 970px;
-                width: 70vw;
+                max-width: ${(props) => (props.showOwner ? "970px" : "1170px")};
+                width: ${(props) => (props.showOwner ? "72vw" : "100vw")};
 
                 .sort-container {
                     flex-direction: row;

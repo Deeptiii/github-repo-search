@@ -93,7 +93,15 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 all_repos: action.payload,
-                filtered_repos: action.payload
+                filtered_repos: action.payload,
+                filters: {
+                    ...state.filters,
+                    name: "",
+                    owner: "",
+                    star_gazers: "",
+                    watchers: "",
+                    openIssue: ""
+                }
             };
         case UPDATE_FILTERS:
             const { name, value } = action.payload;

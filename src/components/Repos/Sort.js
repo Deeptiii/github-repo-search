@@ -2,12 +2,16 @@ import React from "react";
 import { useFilterContext } from "../../context/filter_context";
 import styled from "styled-components";
 
-const Sort = ({ className }) => {
+const Sort = ({ className, indexOfFirstRepo, totalRepos, indexOfLastRepo }) => {
     const { filtered_repos, sort, updateSort } = useFilterContext();
 
     return (
         <Wrapper className={className}>
-            <p>{filtered_repos?.length} repositories</p>
+            <p>Total {filtered_repos?.length} repositories found</p>
+            <p>
+                {indexOfFirstRepo + 1}-{Math.min(indexOfLastRepo, totalRepos)}{" "}
+                of {totalRepos}
+            </p>
             <form>
                 <label htmlFor='sort'>Sort By</label>
                 <select
