@@ -32,7 +32,6 @@ const repo_reducer = (state, action) => {
             let msg = "";
             if (action.payload?.data?.message) {
                 msg = action.payload.data.message.split("(")[0];
-                msg += "Please try after an hour";
             }
             return {
                 ...state,
