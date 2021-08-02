@@ -51,8 +51,6 @@ const RepoList = () => {
             if (!searchTerm.match(/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i)) {
                 msg = "Invalid username. " + msg;
             }
-        } else if (searchTerm.length) {
-            msg = "User does not exist. " + msg;
         }
         return <Message msg={msg} />;
     }

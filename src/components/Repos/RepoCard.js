@@ -42,6 +42,10 @@ const RepoCard = ({ repo, showImage }) => {
         watchers
     } = repo;
     const stats = [stargazers_count, open_issues_count, watchers];
+    const regex = /[^\u0000-\u00ff]/;
+    const containsNonLatinCodepoints = (s) => {
+        return regex.test(s);
+    };
     return (
         <Wrapper>
             <div className='repo-card-container'>
@@ -62,7 +66,11 @@ const RepoCard = ({ repo, showImage }) => {
                         </a>
                         <div className='card-desc'>
                             <p className='card-desc-details'>
-                                {desc?.substring(0, 55)}
+                                {desc
+                                    ? containsNonLatinCodepoints(desc)
+                                        ? desc.substring(0, 25)
+                                        : desc.substring(0, 50)
+                                    : null}
                             </p>
                         </div>
                     </div>
