@@ -1,5 +1,6 @@
 :root {
     --main-bg: #0d1117;
+    --input-bg: #070a10;
     --text-color: #c9d1d9;
     --text-color-blue: #58a6ff;
     --border-color: #21262d;
@@ -51,7 +52,7 @@ select:hover {
 }
 
 .input {
-    background: var(--main-bg);
+    background: var(--input-bg);
     border: 1px solid var(--border-color);
     border-radius: 6px;
     padding: 0 10px;

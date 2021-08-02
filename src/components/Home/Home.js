@@ -35,6 +35,7 @@ const Wrapper = styled.main`
     }
 
     .repo-container {
+        border-top: 1px solid var(--border-color);
         margin: 10px;
     }
 `;

@@ -62,11 +62,6 @@ const Wrapper = styled.div`
         padding: 5px 10px;
         border-radius: 6px;
     }
-
-    @media (min-width: 768px) {
-        .pretty-span {
-        }
-    }
 `;
 
 export default Sort;

@@ -36,7 +36,7 @@ const Wrapper = styled.nav`
         position: sticky;
         top: 63px;
         background: var(--main-bg);
-        border-top: 1px solid var(--border-color);
+        border-top: 1px solid var(--btn-boder-color);
         border-bottom: 1px solid;
         z-index: 2;
 
