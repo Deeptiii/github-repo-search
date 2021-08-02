@@ -20,6 +20,11 @@ const Header = ({ showOwner }) => {
 
 const Wrapper = styled.nav`
     display: none;
+    p:hover {
+        color: var(--text-color-blue);
+        background: var(--main-bg);
+        font-weight: 600;
+    }
 
     @media (min-width: 650px) {
         .header-right {
@@ -28,15 +33,6 @@ const Wrapper = styled.nav`
             display: flex;
             flex-direction: row;
             align-items: center;
-            .header-right-item {
-            }
-
-            /* .header-details {
-                margin-right: 5px;
-                padding: 5px 10px;
-                display: flex;
-                align-items: center;
-            } */
         }
     }
 

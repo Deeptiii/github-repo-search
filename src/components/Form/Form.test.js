@@ -36,7 +36,20 @@ describe("Input value", () => {
 });
 
 describe("Search button", () => {
-    it("does not trigger getRepos function with empty query", () => {
+    it("Does not trigger getRepos function with query", () => {
+        const getRepos = jest.fn();
+        const { queryByTestId } = render(
+            <RepoContext.Provider
+                value={{ ...initialState, searchTerm: "", getRepos }}>
+                <Form />
+            </RepoContext.Provider>
+        );
+
+        fireEvent.click(queryByTestId("form-submit-btn"));
+        expect(getRepos).not.toHaveBeenCalled();
+    });
+
+    it("Trigger getRepos function with query", () => {
         const getRepos = jest.fn();
         const { queryByTestId } = render(
             <RepoContext.Provider

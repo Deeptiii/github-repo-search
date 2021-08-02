@@ -115,6 +115,11 @@ const Wrapper = styled.div`
                 width: 30px;
                 height: auto;
             }
+            &:hover {
+                color: var(--text-color-blue);
+                background: var(--main-bg);
+                font-weight: 600;
+            }
         }
 
         .repo-card-left {
@@ -157,17 +162,30 @@ const Wrapper = styled.div`
 
             .card-info-btn {
                 margin: 2px 10px 2px 0px;
-                padding: 0px 3px;
+                padding: 3px 3px;
                 font-size: 0.7rem;
 
+                &:hover {
+                    .MuiSvgIcon-root path {
+                        fill: var(--text-color-blue);
+                    }
+                    border-color: var(--text-color-blue);
+                    color: var(--text-color-blue);
+                    background: var(--main-bg);
+                    font-weight: 600;
+                }
+
                 .MuiSvgIcon-root {
-                    font-size: 0.9rem;
+                    font-size: 1rem;
                     margin-right: 5px;
                 }
 
                 .card-info-btn-left {
                     padding-right: 10px;
                     white-space: nowrap;
+                    flex: 1;
+                    align-items: center;
+                    justify-content: center;
                 }
                 .count {
                     padding: 5px 7px;
@@ -177,7 +195,7 @@ const Wrapper = styled.div`
         }
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 769px) {
         .repo-card-container {
             flex-direction: row;
             align-items: center;

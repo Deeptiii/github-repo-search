@@ -137,7 +137,7 @@ const Wrapper = styled.section`
             }
         }
         .right_section {
-            width: 92vw;
+            /* width: 92vw; */
 
             .sort-container {
                 flex-direction: column;
@@ -151,19 +151,7 @@ const Wrapper = styled.section`
         }
     }
 
-    @media (min-width: 650px) {
-        .container {
-            .right_section {
-                .sort-container {
-                    flex-direction: row;
-                    align-items: center;
-                    padding-bottom: 10px;
-                }
-            }
-        }
-    }
-
-    @media (min-width: 1000px) {
+    @media (min-width: 769px) {
         .container {
             grid-template-columns: 200px 1fr;
             gap: 3rem 1.5rem;
