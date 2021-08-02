@@ -1,3 +1,12 @@
+### Tasks completed in the assignment
+
+1. Fetch list of repositories from [GET /users/{username}/repos](https://docs.github.com/en/rest/reference/repos#list-repositories-for-a-user) for given username
+2. Local search and sort features for the list fetched from the api above
+3. Created application from scratch using [Create React App](https://github.com/facebook/create-react-app). Setup details given below.
+4. Added basic test case using react testing library
+5. Deployed on netlify at [repo-search-github.netlify.app](https://repo-search-github.netlify.app)
+6. Added CSS to make page responsive and device friendly
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
