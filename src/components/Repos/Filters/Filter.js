@@ -54,7 +54,7 @@ const Filter = ({ showOwner }) => {
                                 name='name'
                                 className='input filter-input'
                                 value={name}
-                                placeholder='Find a repository...'
+                                placeholder='Filter by repository...'
                                 onChange={updateFilters}
                             />
                         </div>
@@ -64,7 +64,7 @@ const Filter = ({ showOwner }) => {
                                 name='owner'
                                 className='input filter-input'
                                 value={owner}
-                                placeholder='Find by owner...'
+                                placeholder='Filter by owner...'
                                 onChange={updateFilters}
                             />
                         </div>
