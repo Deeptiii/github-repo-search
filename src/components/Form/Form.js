@@ -35,9 +35,6 @@ const Form = () => {
                     id='type'
                     value={type}
                     onChange={(e) => updateType(e.target.value)}>
-                    <option value='' disabled>
-                        Select type
-                    </option>
                     <option value='owner'>Owner</option>
                     <option value='member'>Member</option>
                     <option value='all'>All</option>
@@ -79,6 +76,7 @@ const Wrapper = styled.form`
         margin-right: 1rem;
         height: 30px;
         flex: 0.25;
+        outline: none;
 
         &.dropdown {
             flex: 0.5;

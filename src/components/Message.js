@@ -15,6 +15,8 @@ const Wrapper = styled.section`
     height: 50%;
     min-width: 300px;
     min-height: 200px;
+    font-size: 25px;
+    text-align: center;
     .message {
         position: absolute;
         top: 50%;

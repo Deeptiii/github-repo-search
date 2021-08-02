@@ -34,8 +34,8 @@ body.light {
     --btn-bg: #fafbfc;
     --btn-boder-color: #d1d4d4;
     --text-color-blue: #0564d1;
-    --btn-hover-bg: #b1b6bd;
-    --btn-hover-border: #8b949e;
+    --btn-hover-bg: #c6dcfa;
+    --btn-hover-border: #5e9add;
     --input-border-focus: #388bfd;
     --input-border-shadow: #b8cdea;
 }
@@ -49,7 +49,8 @@ code {
         monospace;
 }
 
-.btn {
+.btn,
+.pretty-span {
     background: var(--btn-bg);
     border: 1px solid var(--btn-boder-color);
     border-radius: 6px;
@@ -59,7 +60,7 @@ code {
 }
 
 .btn:hover,
-.pretty-span,
+.pretty-span:hover,
 select:hover {
     background-color: var(--btn-hover-bg);
     border-color: var(--btn-hover-border);

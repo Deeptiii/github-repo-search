@@ -17,7 +17,7 @@ const Sort = ({ className, indexOfFirstRepo, totalRepos, indexOfLastRepo }) => {
             <form>
                 <label htmlFor='sort'>Sort By</label>
                 <select
-                    className='sort btn'
+                    className='sort btn pretty-span'
                     name='sort'
                     id='sort'
                     value={sort}
@@ -47,15 +47,11 @@ const Wrapper = styled.div`
     z-index: 2;
     form {
         margin: 1rem 0;
-    }
-    .sort {
-        background: var(--btn-bg);
-        color: var(--text-color);
-        height: 30px;
-        outline: none;
-        border-radius: 6px;
-        border: 1px solid var(--btn-boder-color);
-        margin-left: 10px;
+        .sort {
+            height: 30px;
+            outline: none;
+            margin-left: 10px;
+        }
     }
 
     .pretty-span {

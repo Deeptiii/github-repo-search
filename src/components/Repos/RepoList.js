@@ -14,7 +14,13 @@ const RepoList = () => {
     const [owner, setOwner] = useState({ name: "", avatar_url: "" });
     const [showOwner, setShowOwner] = useState(false);
     const { filtered_repos: repoList } = useFilterContext();
-    const { repoList: allRepo, type, error, errorMessage } = useRepoContext();
+    const {
+        repoList: allRepo,
+        type,
+        error,
+        errorMessage,
+        searchTerm
+    } = useRepoContext();
 
     const [repos, setRepos] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -40,8 +46,13 @@ const RepoList = () => {
 
     if (allRepo && !allRepo.length) {
         let msg = "Search for a valid user to get repository list";
+
         if (error) {
-            msg = "We are facing error to fetch data for this user";
+            if (!searchTerm.match(/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i)) {
+                msg = "Invalid username. " + msg;
+            }
+        } else if (searchTerm.length) {
+            msg = "User does not exist. " + msg;
         }
         return <Message msg={msg} />;
     }

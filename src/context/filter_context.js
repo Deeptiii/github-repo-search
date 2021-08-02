@@ -44,9 +44,10 @@ export const FilterProvider = ({ children }) => {
         let value = e.target.value;
 
         if (
-            name === "openIssue" ||
-            name === "star_gazers" ||
-            name === "watchers"
+            (name === "openIssue" ||
+                name === "star_gazers" ||
+                name === "watchers") &&
+            value
         ) {
             value = Number(value);
         }

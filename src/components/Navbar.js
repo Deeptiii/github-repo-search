@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import styled from "styled-components";
+import Brightness7Icon from "@material-ui/icons/Brightness7";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
 
 const Navbar = () => {
+    const [darkTheme, setdarkTheme] = useState(true);
+
     const handleToggleTheme = () => {
         document.body.classList.toggle("light");
+        setdarkTheme(!darkTheme);
     };
     return (
         <Wrapper>
             <img className='logo' src={logo} alt='logo' />
             <button className='toggle' onClick={handleToggleTheme}>
-                Toggle theme
+                {darkTheme ? <Brightness7Icon /> : <Brightness4Icon />}
             </button>
         </Wrapper>
     );
@@ -36,6 +41,7 @@ const Wrapper = styled.nav`
         background: white;
         height: 30px;
         margin-right: 20px;
+        transition: 0.5ms;
     }
     @media (min-width: 768px) {
     }

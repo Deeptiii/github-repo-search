@@ -18,6 +18,12 @@ const Filter = ({ showOwner }) => {
     const handlePreventScroll = (e) => {
         e.currentTarget.blur();
     };
+
+    const validateNumber = (e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/gi, "");
+        updateFilters(e);
+    };
+
     return (
         <Wrapper showOwner={showOwner}>
             <div className='content'>
@@ -64,34 +70,34 @@ const Filter = ({ showOwner }) => {
                         </div>
                         <div className='form-control'>
                             <input
-                                type='number'
+                                type='text'
                                 name='star_gazers'
                                 className='input filter-input'
                                 value={star_gazers}
                                 placeholder='Filter by stars...'
-                                onChange={updateFilters}
+                                onChange={validateNumber}
                                 onWheel={handlePreventScroll}
                             />
                         </div>
                         <div className='form-control'>
                             <input
-                                type='number'
+                                type='text'
                                 name='watchers'
                                 className='input filter-input'
                                 value={watchers}
                                 placeholder='Filter by watchers...'
-                                onChange={updateFilters}
+                                onChange={validateNumber}
                                 onWheel={handlePreventScroll}
                             />
                         </div>
                         <div className='form-control'>
                             <input
-                                type='number'
+                                type='text'
                                 name='openIssue'
                                 className='input filter-input'
                                 value={openIssue}
                                 placeholder='Filter by open issues...'
-                                onChange={updateFilters}
+                                onChange={validateNumber}
                                 onWheel={handlePreventScroll}
                             />
                         </div>
