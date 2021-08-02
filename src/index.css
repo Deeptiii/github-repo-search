@@ -4,6 +4,7 @@
     --text-color-blue: #58a6ff;
     --border-color: #21262d;
     --btn-bg: #21262d;
+    --background-nav: #161b22;
     --btn-boder-color: #30363d;
     --btn-hover-bg: #30363d;
     --btn-hover-border: #8b949e;
@@ -37,7 +38,7 @@ code {
 }
 
 .btn:hover,
-.filter-span:hover,
+.pretty-span,
 select:hover {
     background-color: var(--btn-hover-bg);
     border-color: var(--btn-hover-border);
@@ -54,6 +55,7 @@ select:hover {
     border: 1px solid var(--border-color);
     border-radius: 6px;
     padding: 0 10px;
+    height: 30px;
     color: white;
 }
 

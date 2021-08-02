@@ -16,7 +16,7 @@ const Wrapper = styled.nav`
     align-items: center;
     justify-content: center;
     height: 50px;
-    background: hsl(215deg 21% 11%);
+    background: var(--background-nav);
     min-width: 360px;
 
     .logo {

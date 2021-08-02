@@ -9,8 +9,10 @@ const Sort = ({ className, indexOfFirstRepo, totalRepos, indexOfLastRepo }) => {
         <Wrapper className={className}>
             <p>Total {filtered_repos?.length} repositories found</p>
             <p>
-                {indexOfFirstRepo + 1}-{Math.min(indexOfLastRepo, totalRepos)}{" "}
-                of {totalRepos}
+                <span className='pretty-span'>
+                    {indexOfFirstRepo + 1}-
+                    {Math.min(indexOfLastRepo, totalRepos)} of {totalRepos}
+                </span>
             </p>
             <form>
                 <label htmlFor='sort'>Sort By</label>
@@ -43,6 +45,9 @@ const Wrapper = styled.div`
     position: sticky;
     top: 0;
     z-index: 2;
+    form {
+        margin: 1rem 0;
+    }
     .sort {
         background: var(--btn-bg);
         color: var(--text-color);
@@ -53,7 +58,14 @@ const Wrapper = styled.div`
         margin-left: 10px;
     }
 
+    .pretty-span {
+        padding: 5px 10px;
+        border-radius: 6px;
+    }
+
     @media (min-width: 768px) {
+        .pretty-span {
+        }
     }
 `;
 

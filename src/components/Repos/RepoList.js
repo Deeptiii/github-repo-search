@@ -8,6 +8,7 @@ import Sort from "./Sort";
 import Pagination from "./Pagination/Pagination";
 import { useRepoContext } from "../../context/repo_context";
 import Message from "../Message";
+import Header from "./Header";
 
 const RepoList = () => {
     const [owner, setOwner] = useState({ name: "", avatar_url: "" });
@@ -79,6 +80,7 @@ const RepoList = () => {
                     <Filter showOwner={showOwner} />
                     {repoList?.length ? (
                         <>
+                            <Header showOwner={showOwner} />
                             {currentRepos.map((repo) => (
                                 <RepoCard
                                     showImage={!showOwner}
@@ -142,9 +144,23 @@ const Wrapper = styled.section`
                 align-items: flex-start;
                 padding-bottom: 10px;
                 white-space: nowrap;
+                min-width: 360px;
             }
         }
     }
+
+    @media (min-width: 650px) {
+        .container {
+            .right_section {
+                .sort-container {
+                    flex-direction: row;
+                    align-items: center;
+                    padding-bottom: 10px;
+                }
+            }
+        }
+    }
+
     @media (min-width: 768px) {
         .container {
             grid-template-columns: 200px 1fr;
@@ -167,7 +183,7 @@ const Wrapper = styled.section`
 
             .right_section {
                 max-width: ${(props) => (props.showOwner ? "970px" : "1170px")};
-                width: ${(props) => (props.showOwner ? "72vw" : "100vw")};
+                width: 100vw;
 
                 .sort-container {
                     flex-direction: row;

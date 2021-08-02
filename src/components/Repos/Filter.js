@@ -23,7 +23,7 @@ const Filter = ({ showOwner }) => {
             <div className='content'>
                 <div className='content-header'>
                     <span
-                        className='filter-span'
+                        className='pretty-span filter-span'
                         onClick={toggleShowFilters}
                         title='Open Filters Panel'>
                         Filters
@@ -141,6 +141,7 @@ const Wrapper = styled.div`
                     display: none;
                     width: ${(props) => (props.showOwner ? "100%" : "unset")};
                     height: 34px;
+                    padding: 5px 10px;
                 }
             }
         }

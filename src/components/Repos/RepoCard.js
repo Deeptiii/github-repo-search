@@ -5,8 +5,34 @@ import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import ErrorOutlineRoundedIcon from "@material-ui/icons/ErrorOutlineRounded";
 import { Avatar } from "@material-ui/core";
 
+const updateToK = (number) => {
+    if (number > 1000) {
+        return Math.ceil(number / 1000) + "k";
+    }
+    return number;
+};
+
+const btnsArr = [
+    {
+        id: "1",
+        icon: <StarBorderRoundedIcon />,
+        text: "Stars"
+    },
+    {
+        id: "2",
+        icon: <ErrorOutlineRoundedIcon />,
+        text: "Open issues"
+    },
+    {
+        id: "3",
+        icon: <VisibilityOutlinedIcon />,
+        text: "Watchers"
+    }
+];
+
 const RepoCard = ({ repo, showImage }) => {
     const {
+        id,
         name,
         description: desc,
         stargazers_count,
@@ -15,7 +41,7 @@ const RepoCard = ({ repo, showImage }) => {
         owner: { login, avatar_url },
         watchers
     } = repo;
-
+    const stats = [stargazers_count, open_issues_count, watchers];
     return (
         <Wrapper>
             <div className='repo-card-container'>
@@ -36,34 +62,26 @@ const RepoCard = ({ repo, showImage }) => {
                         </a>
                         <div className='card-desc'>
                             <p className='card-desc-details'>
-                                {desc?.substring(0, 51)}
+                                {desc?.substring(0, 55)}
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <div className='card-info flex_align_center'>
-                    <button className='btn card-info-btn flex_align_center'>
-                        <span className='card-info-btn-left flex_align_center'>
-                            <StarBorderRoundedIcon />
-                            Stars
-                        </span>
-                        <span className='count'>{stargazers_count}</span>
-                    </button>
-                    <button className='btn card-info-btn flex_align_center'>
-                        <span className='card-info-btn-left flex_align_center'>
-                            <ErrorOutlineRoundedIcon />
-                            Open issues
-                        </span>
-                        <span className='count'>{open_issues_count}</span>
-                    </button>
-                    <button className='btn card-info-btn flex_align_center'>
-                        <span className='card-info-btn-left flex_align_center'>
-                            <VisibilityOutlinedIcon />
-                            Watchers
-                        </span>
-                        <span className='count'>{watchers}</span>
-                    </button>
+                    {btnsArr.map((btn, index) => (
+                        <button
+                            key={id + "_" + btn.id}
+                            className='btn card-info-btn flex_align_center'>
+                            <span className='card-info-btn-left flex_align_center'>
+                                {btn.icon}
+                                {btn.text}
+                            </span>
+                            <span className='count'>
+                                {updateToK(stats[index])}
+                            </span>
+                        </button>
+                    ))}
                 </div>
             </div>
         </Wrapper>
@@ -138,7 +156,7 @@ const Wrapper = styled.div`
             flex: 0.5;
 
             .card-info-btn {
-                margin: 2px 5px;
+                margin: 2px 10px 2px 0px;
                 padding: 0px 3px;
                 font-size: 0.7rem;
 

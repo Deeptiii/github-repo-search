@@ -66,7 +66,7 @@ const Wrapper = styled.form`
     min-width: 320px;
 
     .form-input {
-        width: 91%;
+        width: 94%;
         height: 30px;
         margin-top: 1rem;
     }
