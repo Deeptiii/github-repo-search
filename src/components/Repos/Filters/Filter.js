@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useFilterContext } from "../../context/filter_context";
+import { useFilterContext } from "../../../context/filter_context";
 import styled from "styled-components";
 
 const Filter = ({ showOwner }) => {
@@ -23,6 +23,7 @@ const Filter = ({ showOwner }) => {
             <div className='content'>
                 <div className='content-header'>
                     <span
+                        data-testid='filters-toggle'
                         className='pretty-span filter-span'
                         onClick={toggleShowFilters}
                         title='Open Filters Panel'>
@@ -38,7 +39,9 @@ const Filter = ({ showOwner }) => {
                     )}
                 </div>
                 {showFilters && (
-                    <form onSubmit={(e) => e.preventDefault()}>
+                    <form
+                        onSubmit={(e) => e.preventDefault()}
+                        data-testid='filters-form'>
                         <div className='form-control'>
                             <input
                                 type='text'

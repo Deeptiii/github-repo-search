@@ -1,6 +1,8 @@
 :root {
     --main-bg: #0d1117;
     --input-bg: #070a10;
+    --input-border-focus: #388bfd;
+    --input-border-shadow: #0c2d6b;
     --text-color: #c9d1d9;
     --text-color-blue: #58a6ff;
     --border-color: #21262d;
@@ -22,6 +24,24 @@ body {
     color: var(--text-color);
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
         sans-serif, Apple Color Emoji, Segoe UI Emoji;
+}
+
+body.light {
+    --main-bg: #ffffff;
+    --input-bg: #ffffff;
+    --text-color: black;
+    --border-color: #d1d3d4;
+    --btn-bg: #fafbfc;
+    --btn-boder-color: #d1d4d4;
+    --text-color-blue: #0564d1;
+    --btn-hover-bg: #b1b6bd;
+    --btn-hover-border: #8b949e;
+    --input-border-focus: #b2bac5;
+    --input-border-shadow: #b8cdea;
+}
+
+body.light .user-name {
+    font-weight: 600 !important;
 }
 
 code {
@@ -57,12 +77,12 @@ select:hover {
     border-radius: 6px;
     padding: 0 10px;
     height: 30px;
-    color: white;
+    color: var(--text-color);
 }
 
 .input:focus-visible {
-    border-color: #388bfd;
-    box-shadow: 0 0 0 3px #0c2d6b;
+    border-color: var(--input-border-focus);
+    box-shadow: 0 0 0 3px var(--input-border-shadow);
     outline: none;
 }
 

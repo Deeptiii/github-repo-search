@@ -36,17 +36,16 @@ describe("Input value", () => {
 });
 
 describe("Search button", () => {
-    describe("with empty query", () => {
-        it("does not trigger getRepos function", () => {
-            const getRepos = jest.fn();
-            const { queryByTestId } = render(
-                <RepoProvider>
-                    <Form />
-                </RepoProvider>
-            );
+    it("does not trigger getRepos function with empty query", () => {
+        const getRepos = jest.fn();
+        const { queryByTestId } = render(
+            <RepoContext.Provider
+                value={{ ...initialState, searchTerm: "test", getRepos }}>
+                <Form />
+            </RepoContext.Provider>
+        );
 
-            fireEvent.click(queryByTestId("form-submit-btn"));
-            expect(getRepos).not.toHaveBeenCalled();
-        });
+        fireEvent.click(queryByTestId("form-submit-btn"));
+        expect(getRepos).toHaveBeenCalled();
     });
 });

@@ -3,7 +3,7 @@ import { Avatar } from "@material-ui/core";
 import styled from "styled-components";
 import RepoCard from "./RepoCard";
 import { useFilterContext } from "../../context/filter_context";
-import Filter from "./Filter";
+import Filter from "./Filters/Filter";
 import Sort from "./Sort";
 import Pagination from "./Pagination/Pagination";
 import { useRepoContext } from "../../context/repo_context";
@@ -58,7 +58,7 @@ const RepoList = () => {
     };
 
     return (
-        <Wrapper showOwner={showOwner}>
+        <Wrapper showOwner={showOwner} data-testid='repo-list'>
             <div className='container'>
                 {showOwner && (
                     <div className='left_section'>
@@ -145,6 +145,8 @@ const Wrapper = styled.section`
                 padding-bottom: 10px;
                 white-space: nowrap;
                 min-width: 360px;
+                border-top: 1px solid var(--btn-boder-color);
+                margin-top: 20px;
             }
         }
     }
@@ -189,6 +191,8 @@ const Wrapper = styled.section`
                     flex-direction: row;
                     align-items: center;
                     padding-bottom: 10px;
+                    border-top: 0;
+                    margin-top: 0px;
                 }
             }
         }

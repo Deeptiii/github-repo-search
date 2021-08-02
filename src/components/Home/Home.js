@@ -19,7 +19,7 @@ const Home = () => {
                 <Form />
             </div>
             <div className='repo-container'>
-                {showLoader ? <Loader /> : <RepoList data-testid='repo-list' />}
+                {showLoader ? <Loader /> : <RepoList />}
             </div>
         </Wrapper>
     );
