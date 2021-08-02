@@ -41,8 +41,7 @@ const RepoList = () => {
     if (allRepo && !allRepo.length) {
         let msg = "Search for a valid user to get repository list";
         if (error) {
-            msg =
-                "We are facing error to fetch data for this user, please try later";
+            msg = "We are facing error to fetch data for this user";
         }
         return <Message msg={msg} />;
     }

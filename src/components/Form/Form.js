@@ -20,7 +20,10 @@ const Form = () => {
                 type='text'
                 placeholder='Search user...'
                 value={searchTerm}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) =>
+                    setSearch(e.target.value.replace(/[^a-zA-Z0-9-]/, ""))
+                }
+                maxLength='39'
                 spellCheck='false'
                 data-testid='search-form-input'
             />
