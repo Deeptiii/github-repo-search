@@ -163,7 +163,7 @@ const Wrapper = styled.section`
         }
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 1000px) {
         .container {
             grid-template-columns: 200px 1fr;
             gap: 3rem 1.5rem;
