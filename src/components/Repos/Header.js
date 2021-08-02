@@ -8,22 +8,7 @@ const Header = ({ showOwner }) => {
             style={{ justifyContent: "space-between" }}>
             {!showOwner && <p className='header-left'>Owner</p>}
             <p className='header-center'>Repository Info</p>
-            <div className='header-right'>
-                <span>Stats</span>
-                <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                    <span
-                        className='header-details'
-                        style={{ marginRight: "40px" }}>
-                        Stars
-                    </span>
-                    <span
-                        className='header-details'
-                        style={{ marginRight: "30px" }}>
-                        Open Issues{" "}
-                    </span>
-                    <span className='header-details'>Watchers</span>
-                </div>
-            </div>
+            <p className='header-right'>Stats</p>
         </Wrapper>
     );
 };
