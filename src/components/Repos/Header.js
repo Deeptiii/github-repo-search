@@ -8,7 +8,12 @@ const Header = ({ showOwner }) => {
             style={{ justifyContent: "space-between" }}>
             {!showOwner && <p className='header-left'>Owner</p>}
             <p className='header-center'>Repository Info</p>
-            <p className='header-right'>Stats</p>
+            {/* <p className='header-right'>Stats</p> */}
+            <div className='header-right'>
+                <p className='header-right-item'>Stars</p>
+                <p className='header-right-item'>Open issues</p>
+                <p className='header-right-item'>Watchers</p>
+            </div>
         </Wrapper>
     );
 };
@@ -21,12 +26,17 @@ const Wrapper = styled.nav`
             min-width: 415px;
             text-align: end;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
+            .header-right-item {
+            }
 
-            .header-details {
+            /* .header-details {
                 margin-right: 5px;
                 padding: 5px 10px;
-            }
+                display: flex;
+                align-items: center;
+            } */
         }
     }
 
@@ -46,13 +56,17 @@ const Wrapper = styled.nav`
         }
 
         .header-center {
+            min-width: 300px;
         }
 
         .header-right {
-            min-width: 415px;
+            min-width: 450px;
             text-align: center;
             display: flex;
-            flex-direction: column;
+            /* flex-direction: column; */
+            .header-right-item {
+                min-width: 150px;
+            }
 
             .header-details {
                 margin-right: 5px;

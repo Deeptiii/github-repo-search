@@ -193,7 +193,11 @@ const Wrapper = styled.div`
             .card-info {
                 display: flex;
                 justify-content: flex-end;
-                min-width: 415px;
+                min-width: 450px;
+
+                .card-info-btn {
+                    min-width: 130px;
+                }
             }
         }
     }
