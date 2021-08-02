@@ -17,7 +17,7 @@ const Form = () => {
         <Wrapper onSubmit={onSubmit}>
             <input
                 className='input form-input'
-                type='text'
+                type='search'
                 placeholder='Search user...'
                 value={searchTerm}
                 onChange={(e) =>
