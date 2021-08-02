@@ -184,6 +184,7 @@ const Wrapper = styled.section`
             .right_section {
                 max-width: ${(props) => (props.showOwner ? "970px" : "1170px")};
                 width: ${(props) => (props.showOwner ? "75vw" : "100vw")};
+                min-width: 749px;
 
                 .sort-container {
                     flex-direction: row;

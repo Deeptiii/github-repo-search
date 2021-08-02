@@ -135,7 +135,7 @@ const Wrapper = styled.div`
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            justify-content: space-between;
+            /* justify-content: space-between; */
 
             .form-control {
                 margin-bottom: 1.25rem;

@@ -44,6 +44,7 @@ const Wrapper = styled.nav`
         transition: 0.5ms;
     }
     @media (min-width: 768px) {
+        min-width: 1000px;
     }
 `;
 

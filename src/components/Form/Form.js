@@ -48,7 +48,7 @@ const Form = () => {
                 </button>
 
                 <button
-                    className='btn form-btn'
+                    className='btn form-btn form-btn-last'
                     type='submit'
                     data-testid='form-submit-btn'
                     onSubmit={onSubmit}>
@@ -66,8 +66,8 @@ const Wrapper = styled.form`
     min-width: 320px;
 
     .form-input {
-        width: 94%;
         height: 30px;
+        margin-right: 1rem;
         margin-top: 1rem;
     }
 
@@ -84,15 +84,21 @@ const Wrapper = styled.form`
     }
     @media (min-width: 768px) {
         flex-direction: row;
+        min-width: 1000px;
 
         .form-input {
             width: 91%;
             margin-top: 0;
+            margin-right: 0;
         }
         .form-btn {
             margin-left: 1rem;
             margin-right: 0;
             margin-top: 0;
+
+            &.form-btn-last {
+                margin-right: 10px;
+            }
         }
     }
 `;
